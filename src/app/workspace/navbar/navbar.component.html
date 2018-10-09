@@ -1,0 +1,360 @@
+<div class="workspace">
+  <div class="header">
+    <a id="menu-toggle">
+      <i class="fa fa-bars bar-icon"></i>
+      <span>Menu</span>
+      <span class="side-line"></span>
+    </a>
+    <h1 id="workspace-name" class="inline_block">
+      <a>
+        <i class="fa fa-home"></i>
+        insightworkshop
+      </a>
+    </h1>
+    <div class="nav-list">
+      <div class="nav-blocks ">
+        <a>
+          <i class="fa fa-rocket"></i>
+          <span class="block ">Plans</span>
+        </a>
+
+        <a>
+          <i class="fa fa-th-large"></i>
+          <span class="block ">Workspaces</span>
+        </a>
+        <a>
+          <i class="fa fa-life-ring"></i>
+          <span class="block ">Help</span>
+        </a>
+        <a>
+          <img src="../../../assets/images/slack.png" alt="Slack">
+          <span class="block ">Launch</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="manage_members">
+    <div class="panel">
+      <div class="title-div">
+        <div>
+          <div class="title">Manage members</div>
+          <div class="inline_block">
+            <button class="download-button">
+              <img src="https://png.icons8.com/android/25/000000/download-2.png">
+            </button>
+          </div>
+        </div>
+        <button class="invite-button" type="button" (click)="basicModal.show()">Invite People
+        </button>
+        <!-- <button type="button" mdbBtn color="primary" class="invite-button" (click)="basicModal.show()"
+          mdbWavesEffect>Invite People</button> -->
+      </div>
+
+      <div class="search-filter">
+        <form id="filter" class="search-input" (ngSubmit)="onSearch(search.value)" #searchAccount [formGroup]="search">
+          <i class="fa fa-search"></i>
+          <input class="search-input-inptbox" type="text" placeholder="Search current members" formControlName="searchItem"
+            name="searchItem" id="searchItem" />
+        </form>
+        <div class="filter">
+          <ul class="navbar-nav mr-auto">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown btn-all filter-btn" dropdown>
+              <img src="https://png.icons8.com/ios-glyphs/23/000000/sorting-options.png">
+              <a dropdownToggle type="button" class="filter-tag nav-link " mdbWavesEffect>
+                Filters
+                <i class="fa fa-chevron-down"></i>
+              </a>
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu" style="top: -20px; right: 6px;">
+                <div class="dropdown-menu-right" style="width: 655px;">
+                  <div class="row px-4">
+                    <label>Filter By</label><a class="ml-auto" style="font-weight: normal; color: #000; text-decoration: underline;">Reset
+                      Filter</a>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <div class="row col-12">
+                    <div class="col-4">
+                      <h6 class="dropdown-header">Account type</h6>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Owner" (click)="filterBy($event.target.value)"
+                          value="4">
+                        <label class="form-check-label " for="Owner" style="font-weight: normal;">Workspace Owner</label>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Admin" (click)="filterBy($event.target.value)"
+                          value="1">
+                        <label class="form-check-label" for="Admin" style="font-weight: normal;">Workspace Admin</label>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Member" (click)="filterBy($event.target.value)"
+                          value="0">
+                        <label class="form-check-label" for="Member" style="font-weight: normal;">Full Member</label>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Guest" (click)="filterBy($event.target.value)"
+                          value="3">
+                        <label class="form-check-label" for="Guest" style="font-weight: normal;">Guest</label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <h6 class="dropdown-header">Billing Status</h6>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Active" (click)="filterBy($event.target.value)"
+                          value="0">
+                        <label class="form-check-label" for="Active" style="font-weight: normal;">Active</label>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Inactive" (click)="filterBy($event.target.value)"
+                          value="1">
+                        <label class="form-check-label" for="Inactive" style="font-weight: normal;">Inactive</label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <h6 class="dropdown-header">Authentication</h6>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Two-factor">
+                        <label class="form-check-label" for="Two-factor" style="font-weight: normal;">Two-factor (2FA)</label>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="SSO">
+                        <label class="form-check-label" for="SSO" style="font-weight: normal;">SSO</label>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="Default">
+                        <label class="form-check-label" for="Default" style="font-weight: normal;">Default (email &
+                          password)</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <div class="form-group form-check ml-2">
+                    <input type="checkbox" class="form-check-input " id="Deactivated">
+                    <label class="form-check-label" for="Deactivated" style="font-weight: normal;">Show Deactivated
+                      Accounts</label>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-panel">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="color: #3D94C8; font-weight: 600">Name <img src="https://png.icons8.com/color/10/000000/thick-arrow-pointing-down.png"></th>
+          <th scope="col" style="color: #8B8C8E; font-weight: 600">Account type</th>
+          <th scope="col" style="color: #8B8C8E; font-weight: 600">Billing status</th>
+          <th scope="col" style="color: #8B8C8E; font-weight: 600">Authentication</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let member of memberDetails">
+        <tr>
+          <th scope="row">
+            <div role="gridcell">
+              <div>
+                <div class="name-row">
+                  <span class="avatar-row" style="height: 36px; line-height: 36px; width: 36px;">
+                    <img *ngIf="member.accountType == 0" class="c-avatar__image" src="https://ca.slack-edge.com/TD5R6SN2Y-UD7RWLFT4-gdb25e4900d8-48"
+                      alt="">
+                    <img *ngIf="member.accountType == 1" class="c-avatar__image" src="https://ca.slack-edge.com/TD5R6SN2Y-UD58XP48G-g7bdc182da32-48"
+                      alt="">
+                    <img *ngIf="member.accountType == 2" class="c-avatar__image" src="https://ca.slack-edge.com/TD5R6SN2Y-UD7VCCN2Z-g18020fcac5b-48"
+                      alt="">
+                    <img *ngIf="member.accountType == 3" class="c-avatar__image" src="https://ca.slack-edge.com/TD5R6SN2Y-UD6121YTU-gf08095c3f4a-48"
+                      alt="">
+                    <img *ngIf="member.accountType == 4" class="c-avatar__image" src="https://ca.slack-edge.com/TD5R6SN2Y-UD5TPV36F-g3559b79b69e-48"
+                      alt="">
+                  </span>
+                  <div>
+                    <div class="real-name">{{member.name}}</div>
+                    <div class="name-email">
+                      <div class="email-row">{{member.email}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th>
+          <td [ngSwitch]="member.accountType">
+            <span *ngSwitchCase="0" style="font-weight: 400">
+              <div class="member-line"></div>Full Member
+            </span>
+            <span *ngSwitchCase="1" style="font-weight: 400">
+              <div class="admin-line"></div>Workspace Admin
+            </span>
+            <span *ngSwitchCase="2" style="font-weight: 400">
+              <div class="primary-line"></div>Primary Owner
+            </span>
+            <span *ngSwitchCase="3" style="font-weight: 400">
+              <div class="guest-line"></div>Guest
+            </span>
+            <span *ngSwitchCase="4" style="font-weight: 400">
+              <div class="primary-line"></div> Owner
+            </span>
+          </td>
+          <td [ngSwitch]="member.billingStatus">
+            <span *ngSwitchCase="0" style="font-weight: 400">Active</span>
+            <span *ngSwitchCase="1" style="font-weight: 400">Inactive</span>
+          </td>
+          <td [ngSwitch]="member.authentication">
+            <span *ngSwitchCase="0" style="font-weight: 400">Two Factor</span>
+            <span *ngSwitchCase="1" style="font-weight: 400">SOS</span>
+            <span *ngSwitchCase="2" style="font-weight: 400">Default</span>
+          </td>
+          <td class="nav-item dropdown" dropdown>
+            <a dropdownToggle type="button" class="filter-tag nav-link " mdbWavesEffect *ngIf="member.accountType == 0 || member.accountType == 1 || member.accountType == 3 || member.accountType == 4  ">
+              <img src="../../../assets/images/more.png" alt="">
+            </a>
+            <a type="button" class="filter-tag nav-link " mdbWavesEffect *ngIf="member.accountType == 2" mdbTooltip="You'll need to ask a Workspace Owner to edit this account."
+              placement="top" mdbWavesEffect>
+              <img src="../../../assets/images/more.png" alt="">
+            </a>
+            <!-- ... (account type change) dropdown -->
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-left dropdown dropdown-primary" role="menu" style="top: -10px;">
+              <div class="dropdown-menu-left">
+                <div class="acctype dropdown dropdown-primary" *ngIf="member.accountType == 0">
+                  <div class="dropdown-item waves-light dropdown-primary" mdbWavesEffect (click)="changeAccType($event, member.id)"
+                    type="button" data-mem="4">Change to Owner</div>
+                  <div class="dropdown-item waves-light dropdown-primary" mdbWavesEffect (click)="changeAccType($event, member.id)"
+                    type="button" data-mem="1">Change to Workspace Admin</div>
+                  <div class="dropdown-item waves-light dropdown-primary" mdbWavesEffect (click)="changeAccType($event, member.id)"
+                    type="button" data-mem="3">Change to Guest</div>
+                  <div class="divider dropdown-divider"></div>
+                  <div class="dropdown-item waves-light" mdbWavesEffect style="color: red;">Deactivate account</div>
+                </div>
+                <div class="acctype" *ngIf="member.accountType == 1">
+                  <div class="dropdown-item waves-light" mdbWavesEffect>Edit your info</div>
+                </div>
+                <div class="acctype" *ngIf="member.accountType == 4">
+                  <div class="dropdown-item waves-light" mdbWavesEffect (click)="changeAccType($event, member.id)" type="button"
+                    data-mem="1">Change to Workspace Admin</div>
+                  <div class="divider dropdown-divider"></div>
+                  <div class="dropdown-item waves-light" mdbWavesEffect style="color: red;">Deactivate account</div>
+                </div>
+                <div class="acctype" *ngIf="member.accountType == 3">
+                  <div class="dropdown-item waves-light" mdbWavesEffect (click)="changeAccType($event, member.id)" type="button"
+                    data-mem="0">Change to Full Member</div>
+                  <div class="divider dropdown-divider"></div>
+                  <div class="dropdown-item waves-light" mdbWavesEffect style="color: red;">Deactivate account</div>
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+      <tr>
+        <td colspan="5">
+          <div class="row">
+            <span class="avatar-row c-avatar p-admin_member_table__filter_row__avatar" style="height: 36px; line-height: 36px; width: 36px;">
+              <img class="c-avatar__image" src="https://png.icons8.com/ios/25/000000/user-group-man-man.png" alt="">
+            </span>
+            <p> <span style="color: rgba(44,45,48,.67); font-weight: 700"> Didn’t find what you’re looking for?</span>
+              Some members may be hidden because of the filters you’ve
+              selected. <a style="color: #0576b9; font-weight: 500;"> Show all members</a></p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+      </tr>
+      <tr *ngIf="memberDetails?.length == 0">
+        <td colspan="5">
+          <div class="row">
+            <span class="avatar-row c-avatar p-admin_member_table__filter_row__avatar" style="height: 36px; line-height: 36px; width: 36px;">
+              <img class="c-avatar__image" src="https://png.icons8.com/ios/25/000000/user-group-man-man.png" alt="">
+            </span>
+            <p> <span style="color: rgba(44,45,48,.67); font-weight: 700"> Didn’t find what you’re looking for?</span>
+              Some members may be hidden because of the filters you’ve
+              selected. <a style="color: #0576b9; font-weight: 500;"> Show all members</a></p>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="memberDetails?.length == 0">
+        <th scope="row"></th>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- invite modal -->
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-fluid" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container col-6 " style="margin-top: 100px;">
+          <div class="row floating-esc">
+            <!-- <button class="esc">
+              <i class="fa fa-close"></i><br>
+              esc
+            </button> -->
+            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+              <span aria-hidden="true">×</span>
+              <br>
+              <span aria-hidden="true">esc</span>
+            </button>
+          </div>
+          <div class="row justify-content-center">
+            <div class="alert alert-info col-sm-12 col-md-12 col-lg-12" role="alert" style="border-color: skyblue">
+              <i class="fa fa-user"></i> Workspaces with paid plans can also invite <a style="font-weight: 400;">guests</a>,
+              like contractors, vendors,
+              or
+              clients. <span style="color: darkturquoise">See pricing plans</span>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-4">
+            <!-- <i class="fa fa-paper-plane msz-30" style="color: skyblue"></i> -->
+            <img src="../../../assets/images/paper-plane.png" alt="" srcset="">
+          </div>
+          <div class="row justify-content-center msz-30 mb-4">
+            <span style="font-weight: 300"> Invite Members to</span><label style="font-weight: 500;">&nbsp;insightworkshop</label>
+          </div>
+          <div class="form-row ">
+            <label class="col-md-6 bold"></label>
+            <label class="col-md-6 bold"></label>
+          </div>
+          <form [formGroup]="invite" (ngSubmit)="inviteMember(invite.value)" #inviteData>
+            <div class="form-group row" id="inputGroup">
+              <div class="col-6 inpl">
+                <label class="bold">Email Address</label>
+                <input formControlName="email" name="email" id="email" class="form-control emailAddress" type="email" placeholder="name@example.com">
+              </div>
+              <div class="col-6 inp">
+                <label class="bold">Full Name (optional)</label>
+                <input formControlName="fullName" name="fullName" id="fullName" class="form-control" type="text"
+                  placeholder="Optional">
+                <a (click)="removeDom()"><i class="fa fa-times iadd-btn "></i></a>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-6"><img src="../../../assets/images/plus.png" class="mr-1"><label><a style="font-weight: 450; color: #0576b9;"
+                    type="button" (click)="addInputGroup()">Add
+                    another</a> or <a style="font-weight: 450; color: #0576b9;">add
+                    many
+                    at once</a></label></div>
+              <div class="col-6" style="text-align: right"><i class="fa fa-google"></i><label>&nbsp;Connect <a style="text-decoration: underline;">Google
+                    Contacts</a></label></div>
+            </div>
+            <div>
+              <h6 style="font-weight: 450;">Default Channels</h6>
+              <p style="color: #717274;">New <a style="font-weight: 450;">members</a> will automatically join <a style="font-weight: 450;">general</a>
+                and <a style="font-weight: 450;">random</a> &nbsp; <u>Edit/add</u></p>
+            </div>
+            <div class="row mt-6">
+              <div class="col-6"><a href="" style="vertical-align: middle; font-weight: 450; color: #0576b9;"><i class="fa fa-link"></i>
+                  Get an invite link
+                  to share</a></div>
+              <button class="btn btn-invite ml-auto">Send Invitations</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
